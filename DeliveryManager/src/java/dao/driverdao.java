@@ -32,14 +32,15 @@ public class driverdao implements idrive{
         }
     } //check kết nối 
     @Override
-    public void addDrive(String Dvier_name, boolean Status) {
+    public void addDrive(String Dvier_name, String Driver_phone,boolean Status) {
         String sql = "INSERT INTO public.\"Driver\"(\n" +
-                     "\"Dvier_name\", \"Status\")\n" +
-                     "VALUES (?, ?);";
+                     "\"Dvier_name\", \"Driver_phone\", \"Status\")\n" +
+                     "VALUES (?, ?, ?);";
         try {
             psm = connection.prepareStatement(sql);
             psm.setString(1, Dvier_name);
-            psm.setBoolean(2, Status);
+            psm.setString(2, Driver_phone);
+            psm.setBoolean(3, Status);
             int state = psm.executeUpdate();
             if(state > 0)
             {
@@ -53,8 +54,8 @@ public class driverdao implements idrive{
 
     @Override
     public ArrayList<Driver> driver() {
-        String sql = "SELECT \"Driver_id\", \"Dvier_name\", \"Status\"\n" +
-                     "FROM public.\"Driver\";";
+        String sql = "SELECT \"Driver_id\", \"Dvier_name\", \"Driver_phone\", \"Status\"\n" +
+                      "FROM public.\"Driver\";";
         try {
             ArrayList<Driver> driverList = new ArrayList<>();
             psm = connection.prepareStatement(sql);
@@ -63,6 +64,7 @@ public class driverdao implements idrive{
                 Driver driver = new Driver();
                 driver.setDriver_id(rs.getInt("Driver_id"));
                 driver.setName(rs.getString("Driver_name"));
+                driver.setPhone(rs.getString("Driver_phone"));
                 driver.setStatus(true);
                 driverList.add(driver);
             }
@@ -75,15 +77,16 @@ public class driverdao implements idrive{
     }
 
     @Override
-    public void updateDrive(int driver_id,String Driver_name, boolean Status) {
+    public void updateDrive(int driver_id,String Driver_name,String Driver_phone, boolean Status) {
         String sql = "UPDATE public.\"Driver\"\n" +
-"	SET\"Dvier_name\"=?, \"Status\"=?\n" +
-"	WHERE  \"Driver_id\"=?;";
+                     "SET \"Dvier_name\"=?, \"Driver_phone\"=?, \"Status\"=?"+
+                     "WHERE  \"Driver_id\"=?;";
         try {
             psm = connection.prepareStatement(sql);
             psm.setString(1, Driver_name);
-            psm.setBoolean(2, Status);
-            psm.setInt(3, driver_id);
+            psm.setString(2, Driver_phone);
+            psm.setBoolean(3, Status);
+            psm.setInt(4, driver_id);
             int state = psm.executeUpdate();
             if(state > 0)
             {

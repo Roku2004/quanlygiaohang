@@ -69,6 +69,7 @@ public class UpdateDriveradminservlet extends HttpServlet {
     throws ServletException, IOException {
         int driver_id = Integer.parseInt(request.getParameter("driver_id"));
         String Driver_name = request.getParameter("drive_name");
+        String Driver_phone = request.getParameter("phone");
         String choice = request.getParameter("status");
         boolean Status;
         if(choice.equals("true")){
@@ -79,7 +80,7 @@ public class UpdateDriveradminservlet extends HttpServlet {
             Status = false;
         }
         driverdao driver = new driverdao();
-        driver.updateDrive(driver_id, Driver_name, Status);
+        driver.updateDrive(driver_id, Driver_name, Driver_phone, Status);
         response.sendRedirect("driverList.jsp");
     }
 

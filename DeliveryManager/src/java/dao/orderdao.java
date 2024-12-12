@@ -89,20 +89,21 @@ public class orderdao implements iorder{
     }
     
     @Override
-    public void UpdateOrderUser(int order_id, String sender, String receiver, String originAddress, String destinationAddres, String sender_phone, String receiver_phone,int weight) {
+    public void UpdateOrderUser(Order order) {
         String sql = "UPDATE public.\"Order\"\n" +
 "	SET  \"Sender\"=?, \"Receiver\"=?, \"Origin_address\"=?, \"Destination_address\"=?, \"Sender_phone\"=?, \"Receiver_phone\"=?,\"Weight\" = ? " +
-"	WHERE \"Order_id\"=?;";
+"	WHERE \"Order_id\"=? and \"Account_id\"=?;";
         try {
             psm = connection.prepareStatement(sql);
-            psm.setString(1, sender);
-            psm.setString(2, receiver);
-            psm.setString(3, originAddress);
-            psm.setString(4, destinationAddres);
-            psm.setString(5, sender_phone);
-            psm.setString(6, receiver_phone);
-            psm.setInt(7, weight);
-            psm.setInt(8, order_id);
+            psm.setString(1, order.getSender());
+            psm.setString(2, order.getReceiver());
+            psm.setString(3, order.getOriginAddress());
+            psm.setString(4,order.getDestinationAddress() );
+            psm.setString(5, order.getSender_phone());
+            psm.setString(6, order.getReceiver_phone());
+            psm.setInt(7 , order.getWeight());
+            psm.setInt(8, order.getOrder_id());
+            psm.setInt(9, order.getAccount().getAccount_id());
             int status = psm.executeUpdate();
             if(status > 0){
                 System.out.println("Order updated successfully ");

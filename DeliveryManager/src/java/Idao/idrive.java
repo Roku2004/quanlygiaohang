@@ -12,9 +12,9 @@ import models.Driver;
  * @author ASUS
  */
 public interface idrive {
-    public void addDrive(String Dvier_name,boolean Status);
+    public void addDrive(String Dvier_name,String Driver_phone,boolean Status);
     
     public ArrayList<Driver> driver();
     
-    public void updateDrive(int driver_id,String Driver_name,boolean Status);
+    public void updateDrive(int driver_id,String Driver_name,String Driver_phone,boolean Status);
 }

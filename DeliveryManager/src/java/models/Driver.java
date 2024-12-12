@@ -14,15 +14,17 @@ public class Driver {
 
     private int driver_id;
     private String name;
+    private String phone;
     private boolean status;
     private ArrayList<Route> route;
 
     public Driver() {
     }
 
-    public Driver(int driver_id, String name, boolean status, ArrayList<Route> route) {
+    public Driver(int driver_id, String name, String phone, boolean status, ArrayList<Route> route) {
         this.driver_id = driver_id;
         this.name = name;
+        this.phone = phone;
         this.status = status;
         this.route = route;
     }
@@ -50,6 +52,14 @@ public class Driver {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public void setStatus(boolean status) {

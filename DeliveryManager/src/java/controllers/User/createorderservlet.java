@@ -12,6 +12,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import models.Account;
 import models.Order;
 
 /**
@@ -75,6 +77,8 @@ public class createorderservlet extends HttpServlet {
        String Sender_phone = request.getParameter("sender_phone");
        String Receiver_phone = request.getParameter("receiver_phone");
        int Weight = Integer.parseInt(request.getParameter("weight"));
+       HttpSession session = request.getSession();//lấy thông tin account từ session về 
+       Account acc = (Account)session.getAttribute("account");
         try {
             orderdao od = new orderdao();
             Order order = new Order();
@@ -85,7 +89,7 @@ public class createorderservlet extends HttpServlet {
             order.setSender_phone(Sender_phone);
             order.setReceiver_phone(Receiver_phone);
             order.setWeight(Weight);
-            order.getAccount().getAccount_id();
+            order.setAccount(acc);
             od.AddOrder(order);
             response.sendRedirect("homepageuser.jsp");
         } catch (Exception e) {

@@ -68,6 +68,7 @@ public class createDriveradminservlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String Driver_name = request.getParameter("drive_name");
+        String Driver_phone = request.getParameter("phone");
         String choice = request.getParameter("status");
         boolean Status;
         if(choice.equals("true")){
@@ -79,7 +80,7 @@ public class createDriveradminservlet extends HttpServlet {
         }
         try {
             driverdao drive = new driverdao();
-            drive.addDrive(Driver_name, Status);
+            drive.addDrive(Driver_name,Driver_phone, Status);
             response.sendRedirect("");
         } catch (Exception e) {
             System.out.println("ERROR" + e.getMessage());

@@ -12,6 +12,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import models.Account;
+import models.Order;
 
 /**
  *
@@ -75,9 +78,26 @@ public class UpdateOrderUserservlet extends HttpServlet {
         String Sender_phone = request.getParameter("sender_phone");
         String Receiver_phone = request.getParameter("receiver_phone");
         int Weight = Integer.parseInt(request.getParameter("weight"));
-        orderdao od = new orderdao();
-        od.UpdateOrderUser(order_id,Sender,Receiver,Origin_address,Destination_address,Sender_phone,Receiver_phone,Weight);
-        response.sendRedirect("OrderListUser.jsp");
+        HttpSession session =request.getSession();
+        Account acc =(Account)session.getAttribute("account");
+        
+        try {
+            orderdao od = new orderdao();
+            Order order = new Order();
+            order.setSender(Sender);
+            order.setReceiver(Receiver);
+            order.setOriginAddress(Origin_address);
+            order.setDestinationAddress(Destination_address);
+            order.setSender_phone(Sender_phone);
+            order.setReceiver_phone(Receiver_phone);
+            order.setWeight(Weight);
+            order.setOrder_id(order_id);
+            order.setAccount(acc);
+            od.UpdateOrderUser(order);
+            response.sendRedirect("OrderListUser.jsp");
+        } catch (Exception e) {
+            System.out.println("UPDATE ERROR" + e.getMessage());
+        }
     }
 
     /** 

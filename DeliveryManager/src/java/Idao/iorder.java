@@ -15,7 +15,7 @@ import models.Order;
 public interface iorder {
     public void AddOrder(Order order);
     
-    public void UpdateOrderUser(int order_id,String sender, String receiver, String originAddress, String destinationAddres, String sender_phone, String receiver_phone,int weight);
+    public void UpdateOrderUser(Order order);
     
     public void UpdateOrderAdmin(int order_id, String sender, String receiver, String originAddress, String destinationAddres, String sender_phone, String receiver_phone,int weight,String status,float total_cost,boolean payment_status);
     
