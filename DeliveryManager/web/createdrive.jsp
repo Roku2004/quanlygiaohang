@@ -13,7 +13,8 @@
     </head>
     <body>
         <form action="createDriveradminservlet" method="post">
-            Drive_name:<input type="text" name="drive_name"><br>
+            Driver_name:<input type="text" name="drive_name"><br>
+            Driver_phone:<input type="text" name="phone"><br>
             Status: <select id="choice" name="status">
                                 <option value="true">Doing</option>
                                 <option value="false">Took a break</option>

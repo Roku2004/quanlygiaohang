@@ -14,6 +14,6 @@
     </head>
     <body>
         <a href="${pageContext.request.contextPath}/createorder.jsp">Create Order</a><br>
-         <a href="${pageContext.request.contextPath}/OrderListUser.jsp">List Order</a>
+        <a href="${pageContext.request.contextPath}/OrderListUser.jsp">List Order</a>
     </body>
 </html>

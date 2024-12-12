@@ -13,7 +13,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="${pageContext.request.contextPath}/admincreateorder.jsp">Create order</a>
-        <a href="${pageContext.request.contextPath}/OrderListAdmin.jsp">Order List</a>
+        <a href="${pageContext.request.contextPath}/admincreateorder.jsp">Create order</a><br>
+        <a href="${pageContext.request.contextPath}/OrderListAdmin.jsp">Order List</a><br>
+        <a href="${pageContext.request.contextPath}/createdrive.jsp">Create driver</a><br>
+        <a href="${pageContext.request.contextPath}/driverList.jsp">Driver List</a><br>
+        <a href="${pageContext.request.contextPath}/createvehical.jsp">Create vehical</a><br>
+        <a href="${pageContext.request.contextPath}/vehicalListn.jsp">Vehical List</a><br>
     </body>
 </html>
